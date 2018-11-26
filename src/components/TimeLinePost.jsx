@@ -23,7 +23,7 @@ function TimeLinePost(props) {
     }
 
     function postNewTweet(event){
-        props.onNewPostControl({post: _post.value})
+        props.onNewPostControl({tweet: _post.value})
         event.preventDefault();
         _post.value = '';
     }
@@ -33,6 +33,7 @@ function TimeLinePost(props) {
             <form onSubmit={postNewTweet}>
                 <input type="text" ref={(input) => {_post = input;}} style={inputStyle} placeholder="What is Happening?" ></input>
                 <button type='submit'>Post</button>
+        
             </form>
         </div>
     );

@@ -10,10 +10,17 @@ class TimeLine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            masterTimeLineList: []
+            masterTimeLineList: [
+                {
+                    tweet: "Hello I'm Connor"
+                }
+            ]
         };
         this.handleAddingNewPostToTimeline = this.handleAddingNewPostToTimeline.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
+
+   
 
     handleAddingNewPostToTimeline(newPost) {
         var newMasterTimeLineList = this.state.masterTimeLineList.slice();
@@ -21,9 +28,8 @@ class TimeLine extends React.Component {
         this.setState({ masterTimeLineList: newMasterTimeLineList });
     }
     handleDelete(newPost) {
-        var newMasterTimeLineList = this.state.masterTimeLineList.slice();
-        newMasterTimeLineList.splice(this.state.masterTimeLineList.indexOf(newPost),this.state.masterTimeLineList.indexOf(newPost) + 1);
-    
+        var newMasterTimeLineList = this.state.masterTimeLineList.slice(); 
+        newMasterTimeLineList.splice(this.state.masterTimeLineList.indexOf(newPost), 1);
         this.setState({ masterTimeLineList: newMasterTimeLineList });
     }
 
@@ -34,9 +40,12 @@ class TimeLine extends React.Component {
 
                 <div className="test">
                     {this.state.masterTimeLineList.map((post, index) => (
-                        <TimeLineFeed tweet={post.post}
-                            key={index} />
+                        <TimeLineFeed onDelete={this.handleDelete}
+                            tweet={post.tweet}
+                            key={index} 
+                            />
                     ))}
+                    
                 </div>
             </div>
 
