@@ -23,7 +23,7 @@ function TimeLinePost(props) {
     }
 
     function postNewTweet(event){
-        props.onNewPostControl({tweet: _post.value})
+        props.onNewPostControl({tweet: _post.value, likes: 0})
         event.preventDefault();
         _post.value = '';
     }

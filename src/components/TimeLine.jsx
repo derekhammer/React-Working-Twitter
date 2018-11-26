@@ -12,15 +12,17 @@ class TimeLine extends React.Component {
         this.state = {
             masterTimeLineList: [
                 {
-                    tweet: "Hello I'm Connor"
+                    tweet: "Hello I'm Connor",
+                    likes: 0
                 }
             ]
         };
         this.handleAddingNewPostToTimeline = this.handleAddingNewPostToTimeline.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
-   
+
 
     handleAddingNewPostToTimeline(newPost) {
         var newMasterTimeLineList = this.state.masterTimeLineList.slice();
@@ -28,24 +30,34 @@ class TimeLine extends React.Component {
         this.setState({ masterTimeLineList: newMasterTimeLineList });
     }
     handleDelete(newPost) {
-        var newMasterTimeLineList = this.state.masterTimeLineList.slice(); 
+        var newMasterTimeLineList = this.state.masterTimeLineList.slice();
         newMasterTimeLineList.splice(this.state.masterTimeLineList.indexOf(newPost), 1);
+        this.setState({ masterTimeLineList: newMasterTimeLineList });
+    }
+
+    handleLike(newPost) {
+        console.log(newPost);
+        var newMasterTimeLineList = this.state.masterTimeLineList.slice();
+        var index = this.state.masterTimeLineList.indexOf(newPost);
+        newPost.likes++;
+        newMasterTimeLineList[index]=newPost;
         this.setState({ masterTimeLineList: newMasterTimeLineList });
     }
 
     render() {
         return (
             <div>
-                <TimeLinePost onNewPostControl={this.handleAddingNewPostToTimeline}/>
+                <TimeLinePost onNewPostControl={this.handleAddingNewPostToTimeline} />
 
                 <div className="test">
                     {this.state.masterTimeLineList.map((post, index) => (
-                        <TimeLineFeed onDelete={this.handleDelete}
+                        <TimeLineFeed onDelete={this.handleDelete} onLike={()=>this.handleLike(post)}
                             tweet={post.tweet}
-                            key={index} 
-                            />
+                            likes={post.likes}
+                            key={index}
+                        />
                     ))}
-                    
+
                 </div>
             </div>
 
@@ -55,6 +67,6 @@ class TimeLine extends React.Component {
 
 TimeLine.propTypes = {
     onNewPostControl: PropTypes.func
-  };
+};
 
 export default TimeLine;

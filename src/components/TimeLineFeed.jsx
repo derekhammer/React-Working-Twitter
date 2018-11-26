@@ -26,7 +26,6 @@ function TimeLineFeed(props) {
 
     return (
         <div style={feedStyle}>
-        {console.log(props)}
             <div className="col-3">
                 <img style={imgStyle} src="https://img.icons8.com/ios/50/27ae60/panda-filled.png"></img>
 
@@ -37,7 +36,9 @@ function TimeLineFeed(props) {
                 </div>
                 <div >
                     {props.tweet}
+                    {props.likes}
                     <button onClick={props.onDelete} type="button">Delete</button>
+                    <button onClick={props.onLike} type="button">Like</button>
             </div>
             </div>
         </div>
