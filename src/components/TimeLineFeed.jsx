@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function TimeLineFeed() {
+function TimeLineFeed(props) {
 
     const feedStyle = {
         paddingTop: "3%",
-        height: "95px",
+        height: "100%",
         border: "1px grey solid"
     }
-    
+
 
     const imgStyle = {
         background: "white",
@@ -18,13 +19,16 @@ function TimeLineFeed() {
         fontWeight: "Bold"
     }
     const descStyle = {
+        // borderTop: "1px grey solid",
+        // borderBottom: "1px grey solid"
 
     }
 
     return (
         <div style={feedStyle}>
+        {console.log(props)}
             <div className="col-3">
-            <img style={imgStyle}src="https://img.icons8.com/ios/50/27ae60/panda-filled.png"></img>
+                <img style={imgStyle} src="https://img.icons8.com/ios/50/27ae60/panda-filled.png"></img>
 
             </div>
             <div className="col-9" style={descStyle}>
@@ -32,11 +36,15 @@ function TimeLineFeed() {
                     Lorem ipsum
                 </div>
                 <div >
-                    Lorem Ipsum dolor sit amet, consectectur adipiscing elit. Nullam.
+                    {props.tweet}
             </div>
             </div>
         </div>
     );
+}
+
+TimeLineFeed.propTypes = {
+    tweet : PropTypes.string
 }
 
 
