@@ -37,6 +37,7 @@ function TimeLineFeed(props) {
                 </div>
                 <div >
                     {props.tweet}
+                    <button type="submit">Delete</button>
             </div>
             </div>
         </div>

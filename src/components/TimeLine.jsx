@@ -3,6 +3,8 @@ import TimeLinePost from "./TimeLinePost";
 import TimeLineFeed from "./TimeLineFeed";
 import PropTypes from "prop-types";
 
+
+
 class TimeLine extends React.Component {
 
     constructor(props) {
@@ -11,12 +13,17 @@ class TimeLine extends React.Component {
             masterTimeLineList: []
         };
         this.handleAddingNewPostToTimeline = this.handleAddingNewPostToTimeline.bind(this);
-
     }
 
     handleAddingNewPostToTimeline(newPost) {
         var newMasterTimeLineList = this.state.masterTimeLineList.slice();
         newMasterTimeLineList.push(newPost);
+        this.setState({ masterTimeLineList: newMasterTimeLineList });
+    }
+    handleDelete(newPost) {
+        var newMasterTimeLineList = this.state.masterTimeLineList.slice();
+        newMasterTimeLineList.splice(this.state.masterTimeLineList.indexOf(newPost),this.state.masterTimeLineList.indexOf(newPost) + 1);
+    
         this.setState({ masterTimeLineList: newMasterTimeLineList });
     }
 
